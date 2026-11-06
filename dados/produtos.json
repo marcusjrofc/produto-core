@@ -1,0 +1,12 @@
+{
+  "dados": [
+    { "id": 1, "nome": "arroz 5 kg", "preco_centavos": 2490, "unidade": "un", "categoria": "mercearia" },
+    { "id": 2, "nome": "feijão 1 kg", "preco_centavos": 799, "unidade": "un", "categoria": "mercearia" },
+    { "id": 3, "nome": "banana", "preco_centavos": 890, "unidade": "kg", "categoria": "hortifruti" },
+    { "id": 4, "nome": "óleo 900 ml", "preco_centavos": 749, "unidade": "un", "categoria": "mercearia" },
+    { "id": 5, "nome": "tomate", "preco_centavos": "8,90", "unidade": "kg", "categoria": "hortifruti" },
+    { "id": 6, "nome": "leite 1 l", "preco_centavos": 539, "unidade": "UN", "categoria": "laticínios" }
+  ],
+  "total": 6,
+  "pagina": 1
+}
