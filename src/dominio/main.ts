@@ -1,4 +1,4 @@
-import Estoque  from "./estoque";
+import {Estoque}  from "./estoque";
 
 const estoque = new Estoque();
 

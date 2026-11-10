@@ -1,28 +1,35 @@
-export default class Estoque {
-  nomes: string[] = [];
-  quantidades: number[] = [];
+export interface ItemEstoque {
+  nome: string;
+  quantidade: number;
+}
+
+export class Estoque {
+  itens: ItemEstoque[] = []
 
   posicao(nome: string): number {
-    return this.nomes.indexOf(nome);
+    return this.itens.findIndex((item) => item.nome === nome)
   }
 
   entrada(nome: string, quantidade: number): void {
     const i = this.posicao(nome);
 
     if (i === -1) {
-      this.nomes.push(nome);
-      this.quantidades.push(quantidade);
+      this.itens.push({nome:nome, quantidade:quantidade})
     } else {
-      this.quantidades[i] = this.quantidades[i] + quantidade;
+      this.itens[i].quantidade = this.itens[i].quantidade + quantidade;
     }
   }
 
   saida(nome: string, quantidade: number): void {
     const i = this.posicao(nome);
-    this.quantidades[i] = this.quantidades[i] - quantidade;
+    this.itens[i].quantidade = this.itens[i].quantidade - quantidade;
   }
 
   disponivel(nome: string): number {
-    return this.quantidades[this.posicao(nome)];
+   const i = this.posicao(nome)
+   if(i === -1){
+    return 0;
+   }
+   return this.itens[i].quantidade;
   }
 }
