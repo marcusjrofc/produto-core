@@ -1,4 +1,4 @@
-export class Estoque {
+export default class Estoque {
   nomes: string[] = [];
   quantidades: number[] = [];
 
