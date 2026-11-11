@@ -1,9 +1,40 @@
-import { Pedido } from "../dominio/pedido";
+import { EstoqueDoPedido, Pedido, ProdutoDoPedido } from "../dominio/pedido";
 
-const pedido = new Pedido();
+const arroz: ProdutoDoPedido = {
+  nome: "arroz 5 kg",
+  precoPorQuantidade(quantidade: number): number {
+    return 2490 * quantidade;
+  },
+};
 
-pedido.adicionar("arroz 5 kg", 2490, 1);
-pedido.adicionar("feijão 1 kg", 799, 2);
-pedido.adicionar("banana", 890, 2);
+const banana: ProdutoDoPedido = {
+  nome: "banana",
+  precoPorQuantidade(quantidade: number): number {
+    return 890 * quantidade;
+  },
+};
+
+const estoqueTeste: EstoqueDoPedido = {
+  disponivel(nome: string): number {
+    if (nome === "arroz 5 kg") return 5;
+    if (nome === "banana") return 4;
+    return 0;
+  },
+  saida(nome: string, quantidade: number): boolean {
+    console.log(`Baixa no estoque: ${quantidade}x ${nome}`);
+    return true;
+  },
+};
+
+const pedido = new Pedido(estoqueTeste);
+
+console.log(pedido.adicionar(arroz, 1));
+console.log(pedido.adicionar(banana, 2));
+console.log(pedido.adicionar(arroz, 10));
 
 console.log(pedido.resumo());
+
+pedido.finalizar();
+console.log(pedido.resumo());
+
+console.log(pedido.adicionar(arroz, 1));
