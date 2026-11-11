@@ -1,0 +1,28 @@
+{
+  "name": "produto-core",
+  "version": "1.0.0",
+  "description": "Módulo 3 · POO com TypeScript · Jovem Tech 2026 · T06D",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcusjrofc/produto-core.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/marcusjrofc/produto-core/issues"
+  },
+  "homepage": "https://github.com/marcusjrofc/produto-core#readme",
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2"
+  }
+}
