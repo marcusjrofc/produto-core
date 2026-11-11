@@ -1,9 +1,11 @@
-import { Pedido } from "./pedido";
+import { Catalogo } from "./catalogo";
 
-const pedido = new Pedido();
+const catalogo = new Catalogo();
 
-pedido.adicionar("arroz 5 kg", 24.90, 1);
-pedido.adicionar("feijão 1 kg", 7.99, 2);
-pedido.adicionar("banana", 8.90, 2);
+// Lembre-se de verificar se o caminho "dados/produtos.json" 
+// está correto em relação à pasta onde corre o comando no terminal.
+catalogo.carregar("dados/produtos.json");
 
-console.log(pedido.resumo());
+console.log(`${catalogo.getQuantidadeProdutos()} produtos carregados`);
+console.log(catalogo.precoDe("arroz 5 kg"));
+console.log(catalogo.precoDe("feijão 1 kg"));
