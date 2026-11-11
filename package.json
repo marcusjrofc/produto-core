@@ -6,10 +6,6 @@
   "directories": {
     "doc": "docs"
   },
-  "devDependencies": {
-    "@types/node": "^26.6.6",
-    "typescript": "^7.0.2"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
@@ -26,5 +22,3 @@
   "bugs": {
     "url": "https://github.com/marcusjrofc/produto-core/issues"
   },
-  "homepage": "https://github.com/marcusjrofc/produto-core#readme"
-}
