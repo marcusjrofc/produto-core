@@ -1,4 +1,4 @@
-    export interface ItemPedido {
+export interface ItemPedido {
   nome: string;
   precoCentavos: number;
   quantidade: number;
@@ -24,6 +24,6 @@ export class Pedido {
   }
 
   resumo(): string {
-    return `${this.itens.length} itens · total em centavos: ${this.total()}`;
+    return `${this.itens.length} itens · total: ${this.total().toFixed(2)}`;
   }
 }
