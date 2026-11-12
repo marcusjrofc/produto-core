@@ -1,7 +1,7 @@
-import { Produto } from './produto';
-import { Catalogo } from './catalogo';
-import { Estoque } from './estoque';
-import { Pedido, ItemPedido } from './pedido';
+import { Produto } from './dominio/produto';
+import { Catalogo } from './dominio/catalogo';
+import { Estoque } from './dominio/estoque';
+import { Pedido, ItemPedido } from './dominio/pedido';
 
 function executarSistema(): void {
   console.log('==========================================');
