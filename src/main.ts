@@ -1,16 +1,9 @@
-import { Catalogo } from "./catalogo";
+import { Pedido } from "./pedido";
 
-const catalogo = new Catalogo();
-catalogo.carregar("dados/produtos.json");
+const pedido = new Pedido();
 
-console.log(`${catalogo.getQuantidadeProdutos()} produtos carregados`);
-console.log(catalogo.precoDe("arroz 5 kg"));
-console.log(catalogo.precoDe("feijão 1 kg"));
-import {Estoque}  from "./estoque";
+pedido.adicionar("arroz 5 kg", 2490, 1);
+pedido.adicionar("feijão 1 kg", 799, 2);
+pedido.adicionar("banana", 890, 2);
 
-const estoque = new Estoque();
-
-estoque.entrada("arroz 5 kg", 10);
-estoque.entrada("arroz 5 kg", 5);
-estoque.saida("arroz 5 kg", 3);
-console.log(estoque.disponivel("arroz 5 kg"));
+console.log(pedido.resumo());
