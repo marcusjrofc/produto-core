@@ -1,9 +1,8 @@
-import { Pedido } from "./pedido";
+import {Estoque}  from "./estoque";
 
-const pedido = new Pedido();
+const estoque = new Estoque();
 
-pedido.adicionar("arroz 5 kg", 24.90, 1);
-pedido.adicionar("feijão 1 kg", 7.99, 2);
-pedido.adicionar("banana", 8.90, 2);
-
-console.log(pedido.resumo());
+estoque.entrada("arroz 5 kg", 10);
+estoque.entrada("arroz 5 kg", 5);
+estoque.saida("arroz 5 kg", 3);
+console.log(estoque.disponivel("arroz 5 kg"));
