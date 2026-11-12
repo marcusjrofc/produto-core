@@ -1,72 +1,43 @@
-export interface ProdutoDoPedido {
-  readonly nome: string;
-  precoPorQuantidade(quantidade: number): number;
-}
+import { Produto } from './produto';
+import { Estoque } from './estoque';
 
-export interface EstoqueDoPedido {
-  disponivel(nome: string): number;
-  saida(nome: string, quantidade: number): boolean;
-}
-
-export class ItemPedido {
-  readonly produto: ProdutoDoPedido;
-  readonly quantidade: number;
-
-  constructor(produto: ProdutoDoPedido, quantidade: number) {
-    this.produto = produto;
-    this.quantidade = quantidade;
-  }
-
-  subtotal(): number {
-    return this.produto.precoPorQuantidade(this.quantidade);
-  }
+export interface ItemPedido {
+  produto: Produto;
+  quantidade: number;
+  precoUnitario: number;
 }
 
 export class Pedido {
-  private itens: ItemPedido[] = [];
-  private status: "aberto" | "finalizado" = "aberto";
-  private estoque: EstoqueDoPedido;
+  public id: number;
+  public itens: ItemPedido[] = [];
+  public status: 'PENDENTE' | 'APROVADO' | 'REJEITADO' = 'PENDENTE';
 
-  constructor(estoque: EstoqueDoPedido) {
-    this.estoque = estoque;
+  constructor(id: number) {
+    this.id = id;
   }
 
-  adicionar(produto: ProdutoDoPedido, quantidade: number): boolean {
-    if (this.status === "finalizado") {
-      return false;
+  public adicionarItem(produto: Produto, quantidade: number, estoque: Estoque): boolean {
+    if (estoque.darBaixa(produto.id, quantidade)) {
+      this.itens.push({
+        produto,
+        quantidade,
+        precoUnitario: produto.preco
+      });
+      return true;
     }
-
-    if (this.estoque.disponivel(produto.nome) < quantidade) {
-      return false;
-    }
-
-    this.itens.push(new ItemPedido(produto, quantidade));
-    return true;
+    console.log(`[ERRO] Estoque insuficiente para o produto: ${produto.nome}`);
+    return false;
   }
 
-  finalizar(): boolean {
-    if (this.status === "finalizado") {
-      return false;
-    }
-
-    for (const item of this.itens) {
-      this.estoque.saida(item.produto.nome, item.quantidade);
-    }
-
-    this.status = "finalizado";
-    return true;
+  public calcularTotal(): number {
+    return this.itens.reduce((total, item) => total + item.precoUnitario * item.quantidade, 0);
   }
 
-  total(): number {
-    let soma: number = 0;
-    for (const item of this.itens) {
-      soma += item.subtotal();
+  public finalizar(): void {
+    if (this.itens.length > 0) {
+      this.status = 'APROVADO';
+    } else {
+      this.status = 'REJEITADO';
     }
-    return soma;
-  }
-
-  resumo(): string {
-    const totalReais = (this.total() / 100).toFixed(2);
-    return `${this.itens.length} itens · ${totalReais} · ${this.status}`;
   }
 }
